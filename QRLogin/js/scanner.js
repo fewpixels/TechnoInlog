@@ -13,7 +13,7 @@
                 // });
                 // window.alert(content)
 
-                window.location = './data_lookup.php?data='+content+'&_blank';
+                window.location = './data_lookup.php?data='+content;
             });
             });
             Instascan.Camera.getCameras().then(function (cameras) {
