@@ -2,5 +2,15 @@ $green : #94c01f;
 $purp : #44205f;
 
 body{
-    background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+#main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $green;
 }
