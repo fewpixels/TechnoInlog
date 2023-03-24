@@ -12,4 +12,13 @@ body {
   background-color: #94c01f;
 }
 
+#filler {
+  width: 640px;
+  height: 400px;
+}
+
+h1 {
+  font-family: "intro", sans-serif;
+}
+
 /*# sourceMappingURL=style.css.map */
