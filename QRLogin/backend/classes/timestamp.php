@@ -126,31 +126,16 @@ Class timeStamp extends DBConfig{
         
         if($exec->execute()){
 
-            
-
+        
             return "UNDERSTANDEBOL HAVE NICE DAY! ". $name;
-
-
 
         }
 
+    }catch(Exception $e){
+        return $e->getMesssage();
 
-
-
-        
-          
-        
-        if()
-
-
-
-
-
-
-
-
-    
     }
+
     
     }
 }
