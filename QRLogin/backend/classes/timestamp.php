@@ -96,5 +96,62 @@ Class timeStamp extends DBConfig{
         }
     }
 
+    // WIM STUKJE 3UITLOG TIME STAMP
+    Public function CheckOut($userID){
+    try{
+        $sql = "select inlogTijd, uitlogTijd, totaalTijd FROM scan WHERE userID = :userID ORDER BY inlogTijd";
+
+        $exec = this->connect()->prepare($sql);
+
+        $exec->bindparam(":userID",$userID);
+        $exec->execute();
+        $time1 = new DateTime();
+
+        $lastRec = $exec->fetch(PDO::FETCH_ASSOC);//HAALT DE RESULTATEN MET BEHULPT VAN FETS EEN ARRAY OP
+        $oldSignInTime = strtotime($LastRec["inlogTijd"]);
+
+        $time1->setTimestamp($oldSignInTime);
+
+        $time2 = new DateTime();
+        $time2str = $Time2 ->format('Y-m-d H:i:s');
+
+        $interval = $time1->diff($time2);
+        $hour_diff = $interval ->h;
+        $sql = "UPDATE scan SET uitlogTijd = :uitlogTijd, totaalTijd = :totaaLTijd WHERE userID = :userID ORDER BY inlogTijd DESC LIMIT 1";
+        
+        $exec = $this->conecct()->prepere($sql);
+        $exec->bindparam (":uitlogTijd",$time2);
+        $exec ->bindparam ("TotaalTijd",$hour_diff);
+        $exec ->bindparam (":user_ID",$userID);
+        
+        if($exec->execute()){
+
+            
+
+            return "UNDERSTANDEBOL HAVE NICE DAY! ". $name;
+
+
+
+        }
+
+
+
+
+        
+          
+        
+        if()
+
+
+
+
+
+
+
+
+    
+    }
+    
+    }
 }
 ?>
