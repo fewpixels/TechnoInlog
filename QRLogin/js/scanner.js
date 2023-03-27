@@ -1,18 +1,7 @@
-
     function webScan(){  
         let scanner = new Instascan.Scanner({ video: document.getElementById('scanner') });
             scanner.addListener('scan', function (content) {
             $(document).ready(function(){
-                // $.ajax({
-                //     type: "POST",
-                //     url: "data_lookup.php",
-                //     data: {data: content},
-                //     success: function(response) {
-                //         alert(response);
-                //     }
-                // });
-                // window.alert(content)
-
                 window.location = './data_lookup.php?data='+content;
             });
             });
@@ -26,3 +15,15 @@
                 console.error(e);
             });
     };
+
+
+    //negeer wat hieronder staat
+                    // $.ajax({
+                //     type: "POST",
+                //     url: "data_lookup.php",
+                //     data: {data: content},
+                //     success: function(response) {
+                //         alert(response);
+                //     }
+                // });
+                // window.alert(content)

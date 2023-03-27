@@ -11,11 +11,13 @@
         
 <?php
 
-require_once 'backend/classes/DBConfig.php';
+require_once 'backend/classes/timestamp.php';
+
+$timeClass = new timeStamp();
 
 if(isset($_GET['data'])) {
-    echo '<h1>beste ' . $_GET['data'] . ' je bent ingelogd!</h1>'; 
-    //nu dus ervoor zorgen dat het de gebruiker ophaalt en hier weergeeft ipv echo lol
+    //echo '<h1>beste ' . $_GET['data'] . ' je bent ingelogd!</h1>'; 
+    $timeClass->checkin($_GET['data']);
 
      header( "refresh:2; url=index.html" ); 
 }

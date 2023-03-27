@@ -13,7 +13,8 @@ CREATE TABLE scan(
     id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     userID INT(10) NOT NULL,
     inlogTijd DATETIME,
-    uitlogTijd DATETIME
+    uitlogTijd DATETIME,
+    totaalTijd INT
 );
 
 ALTER TABLE scan
