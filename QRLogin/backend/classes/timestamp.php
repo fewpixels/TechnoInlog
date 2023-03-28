@@ -72,7 +72,7 @@ Class timeStamp extends DBConfig{
                         $exec->bindparam(":uitlogTijd", $signOff);
                         $exec->bindparam(":totaalTijd", $totalTime);
                         if($exec->execute()){
-                            echo "yay! scenario 4 ";
+                            return "yay! scenario 4 ";
                         }
                     }                           
             }else{ //als er geen tijd bestaat van gebruiker
@@ -97,7 +97,7 @@ Class timeStamp extends DBConfig{
     }
 
     public function checkOut($userId){
-        echo "scenario 3";
+        return "scenario 3";
     }
 }
 ?>
