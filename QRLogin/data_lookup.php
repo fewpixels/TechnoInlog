@@ -17,7 +17,7 @@ $timeClass = new timeStamp();
 
 if(isset($_GET['data'])) {
     //echo '<h1>beste ' . $_GET['data'] . ' je bent ingelogd!</h1>'; 
-    $timeClass->checkin($_GET['data']);
+    $timeClass->checkIn($_GET['data']);
 
      header( "refresh:2; url=index.html" ); 
 }
