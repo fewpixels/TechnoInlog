@@ -96,8 +96,5 @@ Class timeStamp extends DBConfig{
         }
     }
 
-    public function checkOut($userId){
-        return "scenario 3";
-    }
 }
 ?>
