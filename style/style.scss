@@ -1,10 +1,14 @@
 $green : #94c01f;
 $purp : #44205f;
 
-body{
+@mixin center(){
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+body{
+    @include center;
     margin: 0;
 }
 
@@ -15,12 +19,23 @@ body{
     background-color: $green;
 }
 
-#filler{
+#text{
     width: 640px;
     height: 400px;
-    // background-color: $purp;
+    background-color: $purp;
+    @include center;
 }
 
 h1{
     font-family: "intro", sans-serif;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+#output{
+    color: white;
+}
+
+#filler{
+    height: 124px;
 }

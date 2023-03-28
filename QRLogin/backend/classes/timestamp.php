@@ -74,7 +74,7 @@ Class timeStamp extends DBConfig{
 
             }
         } catch(Exception $e){
-            echo 'yo mum';
+            return 'yo mum';
         }
     }
 }

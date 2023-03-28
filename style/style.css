@@ -12,13 +12,27 @@ body {
   background-color: #94c01f;
 }
 
-#filler {
+#text {
   width: 640px;
   height: 400px;
+  background-color: #44205f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
   font-family: "intro", sans-serif;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+}
+
+#output {
+  color: white;
+}
+
+#filler {
+  height: 124px;
 }
 
 /*# sourceMappingURL=style.css.map */
