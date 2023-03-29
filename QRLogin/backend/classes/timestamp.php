@@ -101,14 +101,14 @@ Class timeStamp extends DBConfig{
     try{
         $sql = "select inlogTijd, uitlogTijd, totaalTijd FROM scan WHERE userID = :userID ORDER BY inlogTijd";
 
-        $exec = this->connect()->prepare($sql);
+        $exec = $this->connect()->prepare($sql);
 
         $exec->bindparam(":userID",$userID);
         $exec->execute();
         $time1 = new DateTime();
 
         $lastRec = $exec->fetch(PDO::FETCH_ASSOC);//HAALT DE RESULTATEN MET BEHULPT VAN FETS EEN ARRAY OP
-        $oldSignInTime = strtotime($LastRec["inlogTijd"]);
+        $oldSignInTime = strtotime($lastRec["inlogTijd"]);
 
         $time1->setTimestamp($oldSignInTime);
 
