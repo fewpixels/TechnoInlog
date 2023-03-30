@@ -1,15 +1,8 @@
 <?php
 
 // Connect to the database
-//$conn = mysqli_connect("mysql:host=localhost;dbname=inlogtechnolab", 'root', '',);
-try{
-  $conn = new PDO("mysql:host=localhost;dbname=inlogtechnolab", 'root', '',);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  return $conn;
-}catch(PDOException $e){
-  echo $e->getMessage();
-  
-}
+$conn = mysqli_connect("localhost","root", '', 'inlogtechnolab'); //het moest dus zo zijn: servernaam, username, wachtwoord, database naam
+
 
 // Check connection
 // if (!$conn) {
@@ -17,7 +10,7 @@ try{
 // }
 
 // Execute a SQL query to retrieve the data
-$sql = "SELECT * FROM my_table";
+$sql = "SELECT * FROM my_table"; //verander tabel naam naar scan, loopt hier vast
 $result = mysqli_query($conn, $sql);
 
 ?>
@@ -42,8 +35,8 @@ $result = mysqli_query($conn, $sql);
   while ($row = mysqli_fetch_assoc($result)){
     echo "<tr>";
     echo "<td>" . $row["id"] . "</td>";
-    echo "<td>" . $row["naam"] . "</td>";
-    echo "<td>" . $row["email"] . "</td>";
+    echo "<td>" . $row["naam"] . "</td>"; //dit ook veranderen
+    echo "<td>" . $row["email"] . "</td>"; //en dit ook
     echo "</tr>";
   }
   ?>
