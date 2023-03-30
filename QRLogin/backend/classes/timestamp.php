@@ -6,11 +6,12 @@ Class timeStamp extends DBConfig{
         try{
         
             //naam van gebruiker ophalen
-            $sql = "SELECT CONCAT(voornaam, tussenvoegsel, achternaam) as naam FROM USERS WHERE id = :userid";
+            $sql = "SELECT CONCAT(voornaam, ' ', tussenvoegsel, ' ', achternaam) as naam FROM USERS WHERE id = :userid";
             $exec = $this->connect()->prepare($sql);
             $exec->bindparam(":userid", $userId); 
             $exec->execute();
-            $name = $exec->fetch(PDO::FETCH_OBJ); //naam gebruiker opslaan
+            $name = $exec->fetchColumn(); //naam gebruiker opslaan
+            sleep(0.5); //vertraging omdat de database niet snel genoeg is om de aanvraag op tijd af te handelen
 
             
             //laatste uitlogtijd ophalen van gebruiker
@@ -43,7 +44,7 @@ Class timeStamp extends DBConfig{
 
                 if($lastRec['totaalTijd'] == null){ //controleren of er een eerdere record is met null totaaltijd
                     if($time1->format('Y-m-d') === $time3->format('Y-m-d')) { //als hij al in is gecheckt
-                        $this->checkOut($userId);
+                       return $this->checkOut($userId, $name);
                     }elseif($time2->format('Y-m-d') != $time1->format('Y-m-d') && $lastRec['totaalTijd'] == 0){ 
                             $sql = "UPDATE scan SET totaalTijd = :totaalTijd WHERE userID = :userID ORDER BY inlogTijd DESC LIMIT 1";
                             $exec = $this->connect()->prepare($sql);
@@ -59,7 +60,7 @@ Class timeStamp extends DBConfig{
                             $exec->bindparam(":uitlogTijd", $signOff);
                             $exec->bindparam(":totaalTijd", $totalTime);
                             if($exec->execute()){
-                                return "yay! scenario 1 " . $time2->format('Y-m-d') . " " . $time3->format('Y-m-d') . " " . $exec->rowCount() ;
+                                return "goedemorgen " . $name . "!<br>het lijkt erop dat je gisteren was vergeten uit te checken!<br> VERGEET DUS NIET UIT TE CHECKEN!" ;
                             }
 
                         }
@@ -72,7 +73,7 @@ Class timeStamp extends DBConfig{
                         $exec->bindparam(":uitlogTijd", $signOff);
                         $exec->bindparam(":totaalTijd", $totalTime);
                         if($exec->execute()){
-                            return "yay! scenario 4 ";
+                            return "goedemorgen " . $name ."!" ;
                         }
                     }                           
             }else{ //als er geen tijd bestaat van gebruiker
@@ -87,7 +88,7 @@ Class timeStamp extends DBConfig{
                 $exec->bindparam(":uitlogTijd", $signOff);
                 $exec->bindparam(":totaalTijd", $totalTime);
                 if($exec->execute()){
-                    return "yay! scenario 2";
+                    return "welkom bij technolab " . $name ."!";
                 }
 
             }
@@ -97,9 +98,9 @@ Class timeStamp extends DBConfig{
     }
 
     // WIM STUKJE 3UITLOG TIME STAMP
-    Public function CheckOut($userID){
+    Public function CheckOut($userID, $name){
     try{
-        $sql = "select inlogTijd, uitlogTijd, totaalTijd FROM scan WHERE userID = :userID ORDER BY inlogTijd";
+        $sql = "SELECT inlogTijd, uitlogTijd, totaalTijd FROM scan WHERE userID = :userID ORDER BY inlogTijd DESC LIMIT 1";
 
         $exec = $this->connect()->prepare($sql);
 
@@ -111,28 +112,27 @@ Class timeStamp extends DBConfig{
         $oldSignInTime = strtotime($lastRec["inlogTijd"]);
 
         $time1->setTimestamp($oldSignInTime);
+        $time1str = $time1->format('Y-m-d H:i:s');
 
         $time2 = new DateTime();
-        $time2str = $Time2 ->format('Y-m-d H:i:s');
+        $time2str = $time2->format('Y-m-d H:i:s');
 
         $interval = $time1->diff($time2);
-        $hour_diff = $interval ->h;
-        $sql = "UPDATE scan SET uitlogTijd = :uitlogTijd, totaalTijd = :totaaLTijd WHERE userID = :userID ORDER BY inlogTijd DESC LIMIT 1";
-        
-        $exec = $this->conecct()->prepere($sql);
-        $exec->bindparam (":uitlogTijd",$time2);
-        $exec ->bindparam ("TotaalTijd",$hour_diff);
-        $exec ->bindparam (":user_ID",$userID);
-        
-        if($exec->execute()){
+        $hour_diff = $interval->h + 1;
+        $sql = "UPDATE scan SET uitlogTijd = :uitlogTijd, totaalTijd = :totaalTijd WHERE userID = :userID ORDER BY inlogTijd DESC LIMIT 1";
 
         
-            return "UNDERSTANDEBOL HAVE NICE DAY! ". $name;
-
+        $exec = $this->connect()->prepare($sql);
+        $exec->bindparam(":uitlogTijd", $time2str);
+        $exec->bindparam("totaalTijd",$hour_diff);
+        $exec->bindparam(":userID",$userID);
+        
+        if($exec->execute()){        
+            return "tot ziens " .$name . "! ". "<br>totaal uren gewerkt: " . $hour_diff;
         }
 
     }catch(Exception $e){
-        return $e->getMesssage();
+        echo $e->getMessage();
 
     }
 
