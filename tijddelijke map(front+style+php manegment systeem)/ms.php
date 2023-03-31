@@ -1,13 +1,26 @@
 <?php
-// Connect to the database
-$conn = mysqli_connect("localhost", "username", "password", "database_name");
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+// Connect to the database
+//$conn = mysqli_connect("mysql:host=localhost;dbname=inlogtechnolab", 'root', '',);
+try{
+  $conn = new PDO("mysql:host=localhost;dbname=inlogtechnolab", 'root', '',);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  return $conn;
+}catch(PDOException $e){
+  echo $e->getMessage();
+  
 }
 
+// Check connection
+// if (!$conn) {
+//     die("Connection failed: " . mysqli_connect_error());
+// }
 
+// Execute a SQL query to retrieve the data
+$sql = "SELECT * FROM my_table";
+$result = mysqli_query($conn, $sql);
+
+?>
 <head>
   <link rel="stylesheet" href="ms.css">
 </head>
@@ -16,7 +29,6 @@ if (!$conn) {
 
 
 <h1>welcome slavemaster</h1>
-
 <table class = "sheet">
   <tr>
     <th>UserID</th>
@@ -24,23 +36,17 @@ if (!$conn) {
     <th>InlogTijd</th>
 	<th>UitlogTijd</th>
 	<th>TotaalTijd</th>
-	
   </tr>
-  <tr>
-    <td>01</td>
-    <td>Wim van der Linden</td>
-    <td>08:30</td>
-	<td>16:30</td>
-	<td>7.5</td>
-  </tr>
-  <tr>
-    <td>01</td>
-    <td>Wim van der Linden</td>
-    <td>08:30</td>
-	<td>16:30</td>
-	<td>7.5</td>
-  </tr>
+  
+  <?php
+  while ($row = mysqli_fetch_assoc($result)){
+    echo "<tr>";
+    echo "<td>" . $row["id"] . "</td>";
+    echo "<td>" . $row["naam"] . "</td>";
+    echo "<td>" . $row["email"] . "</td>";
+    echo "</tr>";
+  }
+  ?>
  </table>
 </body>
 
-php>
