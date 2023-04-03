@@ -7,9 +7,19 @@ $purp : #44205f;
     align-items: center;
 }
 
-body{
+#mainmain{
     @include center;
+}
+
+#logo{
+    width: 15vw;
+    margin: 1.5rem;
+}
+
+body{
+    
     margin: 0;
+    height: 100%;
 }
 
 #main{
@@ -24,6 +34,9 @@ body{
     height: 400px;
     background-color: $purp;
     @include center;
+        h1{
+            color: white;
+        }
 }
 
 h1{
@@ -32,10 +45,17 @@ h1{
     padding-bottom: 3vh;
 }
 
-#output{
-    color: white;
-}
-
 #filler{
     height: 124px;
+}
+
+#tri{
+    color: $purp;
+    width: 0;
+	height: 0;
+	border-left: 40vw solid transparent;
+	border-right: 0px solid transparent;
+	border-bottom: 50vh solid $purp;
+    position: absolute;
+    right: 0; bottom: 0;
 }
