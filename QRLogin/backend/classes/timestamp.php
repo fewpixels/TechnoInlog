@@ -23,7 +23,7 @@ Class timeStamp extends DBConfig{
             //controleren of er een uitlogtijd bestaat van gebruiker
             if($exec->rowCount() > 0){
 
-                $signOff = null; //zodat ze gebruiker niet onmiddelijk uitlogd
+                $signOff = null; //zodat ze gebruiker niet onmiddelijk word uitlogd
                 $totalTime = null; //omdat diegene incheckt, hoeft er natuurlijk nog niet onmiddelijk een totaaltijd te staan
                 $forgotCheckOut = 8;
 
@@ -101,13 +101,11 @@ Class timeStamp extends DBConfig{
     Public function CheckOut($userID, $name){
     try{
         $sql = "SELECT inlogTijd, uitlogTijd, totaalTijd FROM scan WHERE userID = :userID ORDER BY inlogTijd DESC LIMIT 1";
-
         $exec = $this->connect()->prepare($sql);
-
         $exec->bindparam(":userID",$userID);
         $exec->execute();
+        
         $time1 = new DateTime();
-
         $lastRec = $exec->fetch(PDO::FETCH_ASSOC);//HAALT DE RESULTATEN MET BEHULPT VAN FETS EEN ARRAY OP
         $oldSignInTime = strtotime($lastRec["inlogTijd"]);
 
@@ -119,9 +117,8 @@ Class timeStamp extends DBConfig{
 
         $interval = $time1->diff($time2);
         $hour_diff = $interval->h + 1;
-        $sql = "UPDATE scan SET uitlogTijd = :uitlogTijd, totaalTijd = :totaalTijd WHERE userID = :userID ORDER BY inlogTijd DESC LIMIT 1";
 
-        
+        $sql = "UPDATE scan SET uitlogTijd = :uitlogTijd, totaalTijd = :totaalTijd WHERE userID = :userID ORDER BY inlogTijd DESC LIMIT 1";
         $exec = $this->connect()->prepare($sql);
         $exec->bindparam(":uitlogTijd", $time2str);
         $exec->bindparam("totaalTijd",$hour_diff);
