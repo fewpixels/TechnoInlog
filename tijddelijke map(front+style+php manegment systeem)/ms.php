@@ -20,16 +20,18 @@ $result = mysqli_query($conn, $sql);// SELECT Orders.OrderID, Customers.Customer
   <link rel="stylesheet" href="ms.css">
 </head>
 <body>
-    <img src="hoooo.png" alt="">
+    <img src="../image/Technolab Logo.png" alt="" id='logo'>
 
 
+    
+<article id='container'>
 <h1>welcome </h1>
 <table class = "sheet">
   <tr>
-  <th></th>
     <th>UserID</th>
     <th>Naam</th>
     <th>InlogTijd</th>
+    <th>Uitlogtijd</th>
 	  <th>TotaalTijd</th>
     <th>aantall checkins</th>
     <th>aanpassen</th>
@@ -57,5 +59,9 @@ $result = mysqli_query($conn, $sql);// SELECT Orders.OrderID, Customers.Customer
   }
   ?>
  </table>
+ </article>
+ <div id="tri">
+
+    </div>
 </body>
 

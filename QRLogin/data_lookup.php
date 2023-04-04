@@ -18,7 +18,7 @@
         // echo '<h1>beste ' . $_GET['data'] . ' je bent ingelogd!</h1>'; 
         echo "<h1 id='output'> " . $timeClass->checkIn($_GET['data']) . " </h1>";
 
-        //header( "refresh:2; url=index.html" ); 
+        header( "refresh:2; url=index.html" ); 
     }
 
     ?>
@@ -29,6 +29,7 @@
         </section>
     </article>
 </article>
+<img src="../image/Capture.PNG" alt="" id="otherimg">
 <div id="tri">
         
     </div>

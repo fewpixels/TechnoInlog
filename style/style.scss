@@ -17,7 +17,6 @@ $purp : #44205f;
 }
 
 body{
-    
     margin: 0;
     height: 100%;
 }
@@ -27,6 +26,7 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: $green;
+    position: relative;
 }
 
 #text{
@@ -49,8 +49,13 @@ h1{
     height: 124px;
 }
 
+#otherimg{
+    position: absolute;
+    left: 0; bottom: 0;
+    z-index: -1;
+}
+
 #tri{
-    color: $purp;
     width: 0;
 	height: 0;
 	border-left: 40vw solid transparent;
