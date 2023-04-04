@@ -17,7 +17,6 @@
     if(isset($_GET['data'])) {
         // echo '<h1>beste ' . $_GET['data'] . ' je bent ingelogd!</h1>'; 
         echo "<h1 id='output'> " . $timeClass->checkIn($_GET['data']) . " </h1>";
-
         //header( "refresh:2; url=index.html" ); 
     }
 
