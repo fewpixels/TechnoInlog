@@ -1,3 +1,4 @@
 index.html		https://wireframe.cc/A6R5qX
 data_lookup.php		https://wireframe.cc/20pUrA
 beheerder		https://wireframe.cc/9cdE0O
+nieuwe gebruiker	https://wireframe.cc/ujqNgB
