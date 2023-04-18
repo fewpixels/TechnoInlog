@@ -62,4 +62,17 @@ h1 {
   bottom: 0;
 }
 
+a{
+	align-self: center;
+	text-decoration: none;
+	color: white;
+}
+
+button{
+  background-color: #44205f;
+}
+button:hover{
+  background-color: #94c01f;
+}
+
 /*# sourceMappingURL=style.css.map */
