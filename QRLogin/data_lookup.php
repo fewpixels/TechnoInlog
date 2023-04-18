@@ -1,8 +1,8 @@
 <head>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-<img src="../image/Technolab Logo.png" alt="logo van technolab" id='logo'>
+<img src="image/Technolab Logo.png" alt="logo van technolab" id='logo'>
 <article id='mainmain'>
     <article id='main'>
         <section id='text'>
