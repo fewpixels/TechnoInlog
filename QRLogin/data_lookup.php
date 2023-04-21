@@ -11,7 +11,7 @@
             $timeClass = new timeStamp();
             if(isset($_GET['data'])) {
                 echo "<h1 id='output'> " . $timeClass->checkIn($_GET['data']) . " </h1>";
-                header( "refresh:2; url=index.html" ); 
+                header( "refresh:3.5; url=index.html" ); 
             }
         ?>
         </section>
