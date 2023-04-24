@@ -16,7 +16,7 @@ class User extends DBConfig{
                 $exec->bindParam(":achternaam", $data['achternaam']);
                 if($exec->execute()){
                     sleep(0.5);
-                    $sql = "SELECT id FROM USERS ORDER BY id DESC LIMIT 1";
+                    $sql = "SELECT id FROM users ORDER BY id DESC LIMIT 1";
                     $exec = $this->connect()->prepare($sql);
                     if($exec->execute()){
                         $id = $exec->fetchColumn();

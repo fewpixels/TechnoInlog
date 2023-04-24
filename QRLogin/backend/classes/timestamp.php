@@ -6,7 +6,7 @@ Class timeStamp extends DBConfig{
         try{
         
             //naam van gebruiker ophalen
-            $sql = "SELECT CONCAT(voornaam, ' ', tussenvoegsel, ' ', achternaam) as naam FROM USERS WHERE id = :userid";
+            $sql = "SELECT CONCAT(voornaam, ' ', tussenvoegsel, ' ', achternaam) as naam FROM users WHERE id = :userid";
             $exec = $this->connect()->prepare($sql);
             $exec->bindparam(":userid", $userId); 
             $exec->execute();
@@ -102,7 +102,7 @@ Class timeStamp extends DBConfig{
                 }
             }
         } catch(Exception $e){
-            return 'yo mum';
+            return $e->getMessage();
         }
     }
 
