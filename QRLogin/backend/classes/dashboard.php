@@ -6,14 +6,28 @@ class Dashboard extends DBConfig{
         $sql = "SELECT scan.userID,
                scan.inlogTijd,
                scan.uitlogTijd,
-               scan.totaalTijd, 
+               scan.totaalTijd,
                CONCAT(users.voornaam,' ',users.tussenvoegsel,' ',users.achternaam) AS naam -- naamdelen samenvoegen
-               From users
+               FROM users
                INNER JOIN scan ON users.id = scan.userID";
         $exec = $this->connect()->prepare($sql);
         $exec->execute();
         return $exec->fetchAll(PDO::FETCH_OBJ);
     }
+
+    // public function getUserScans($data){
+    //     $name = $_GET['name'];
+    //     $id = $_GET['id'];
+    //     $sql = "SELECT userID,
+    //             inlogTijd,
+    //             uitlogTijd,
+    //             totaalTijd, 
+    //             FROM scan
+    //             WHERE userID = $id";
+    //     $exec = $this->connect()->prepare($sql);
+    //     $exec->execute();
+    //     return $exec->fetchAll(PDO::FETCH_OBJ);
+    // }
 }
 
 

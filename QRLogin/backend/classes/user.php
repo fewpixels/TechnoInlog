@@ -2,7 +2,26 @@
 
 require_once 'DBConfig.php';
 
+
 class User extends DBConfig{
+
+    public function getUsers(){ //haal ALLES van ALLE gebruikers op
+        $sql = "SELECT * FROM users";
+        $exec = $this->connect()->prepare($sql);
+        $exec->execute();
+        return $exec->fetchAll(PDO::FETCH_OBJ);
+        $exec->close(); //verbinding sluiten
+    }
+
+    public function getUserData($data){
+        $id = $data['userID'];
+        $sql = "SELECT * FROM users WHERE id = $id";
+        $exec = $this->connect()->prepare($sql);
+        $exec->execute();
+        return $exec->fetchAll(PDO::FETCH_OBJ);
+        $exec->close(); //verbinding sluiten
+    }
+
     public function createUser($data){
         try{
             if($this->checkIfUserExists($data)){
@@ -26,7 +45,7 @@ class User extends DBConfig{
                             $name = $data['voornaam'] . " ". $data['tussenvoegsel'] . " " . $data['achternaam'];
                         }
                         header("Location: generateQR.php?id=$id&name=$name");
-                        //throw new exception("it worked! " . $name . " created!");
+                        $exec->close();
                     }
                 }
             }
