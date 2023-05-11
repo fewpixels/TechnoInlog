@@ -14,7 +14,7 @@ CREATE TABLE scan(
     userID INT(10) NOT NULL,
     inlogTijd DATETIME,
     uitlogTijd DATETIME,
-    totaalTijd INT
+    totaalTijd DECIMAL(5,2)
 );
 
 ALTER TABLE scan
