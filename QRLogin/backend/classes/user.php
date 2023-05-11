@@ -82,6 +82,35 @@ class User extends DBConfig{
             echo $e->getMessage();
         }
     }
+
+    public function updateUser($data){ //alles bijwerken
+        $userid = $_GET['userID'];
+        try{
+            $sql = "UPDATE users SET 
+                    voornaam = :voornaam, 
+                    tussenvoegsel = :tussenvoegsel, 
+                    achternaam = :achternaam, 
+                    WHERE id = $userid";
+            $exec = $this->connect()->prepare($sql);
+            $exec->bindParam(":voornaam", $data['voornaam']);
+            $exec->bindParam(":tussenvoegsel", $data['tussenvoegsel']);
+            $exec->bindParam(":achternaam", $data['achternaam']);
+
+            if($exec->execute()){
+                header("Location:showUsers.php");
+            }
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
+
+    public function deleteUser($id){
+        $sql = "DELETE FROM users WHERE id = $id";
+        $exec = $this->connect()->prepare($sql);
+        if($exec->execute()){
+            header("Location:showUsers.php");
+        }
+    }
 }
 
 ?>

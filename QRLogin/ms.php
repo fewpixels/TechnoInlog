@@ -16,6 +16,7 @@ $scanList = $scans->getScans();
     
 <article id='container'>
 <h1>Scanlijst </h1>
+<a href="index.html"><button type="button">Terug</a></button>
 <table class = "sheet">
   <tr>
     <th>UserID</th>
