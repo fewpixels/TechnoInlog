@@ -9,6 +9,8 @@ https://github.com/schmich/instascan
 En maakt gebruik van 'PHP QR code'
 https://phpqrcode.sourceforge.net/
 
+Code oplossingen en bugfixes deels dankzij ChatGPT
+
 om een QR code te genereren en het weer te geven moet je bepaalde parameters aanpassen, dat doe je zo:
 
 Windows met xampp:
