@@ -3,7 +3,7 @@ require_once '../backend/classes/dashboard.php';
 
 $scans = new Dashboard();
 
-$scanList = $scans->getScans();
+$scanList = $scans->getScansById($_GET['user']);
 ?>
 <head>
     <link rel="stylesheet" href="../style/style.css">
@@ -14,8 +14,8 @@ $scanList = $scans->getScans();
 
     
 <article id='container'>
-<h1>Scanlijst </h1>
-<a href="index.html"><button type="button">Terug</a></button>
+<h1>Scanlijst</h1>
+<a href="ms.php"><button type="button">Terug</a></button>
 <table class = "sheet">
   <tr>
     <th>UserID</th>
@@ -32,7 +32,7 @@ $scanList = $scans->getScans();
   foreach($scanList as $singleScan){
     echo "<tr>";
     echo "<td>" . $singleScan->userID . "</td>";
-    echo "<td> <a href='msUser.php?user=" . $singleScan->userID . "'>" . $singleScan->naam . "</a> </td>"; 
+    echo "<td>" . $singleScan->naam . "</td>"; 
     echo "<td>" . $singleScan->inlogTijd . "</td>"; //en dit ook
     echo "<td>" . $singleScan->uitlogTijd . "</td>";
     echo "<td>" .$singleScan->totaalTijd . "</td>";  
