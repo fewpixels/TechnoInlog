@@ -1,5 +1,5 @@
 <?php
-require_once 'backend/classes/DBConfig.php'
+require_once '../backend/classes/DBConfig.php'
 ?>
 
 <head>

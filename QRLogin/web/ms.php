@@ -1,16 +1,15 @@
 <?php
-require_once 'backend/classes/dashboard.php';
+require_once '../backend/classes/dashboard.php';
 
 $scans = new Dashboard();
 
 $scanList = $scans->getScans();
 ?>
 <head>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
-<img src="image/Technolab Logo.png" alt="logo van technolab" id="logo">
+<img src="../image/Technolab Logo.png" alt="logo van technolab" id="logo">
 <body>
-    <img src="../image/Technolab Logo.png" alt="" id='logo'>
 
 
     

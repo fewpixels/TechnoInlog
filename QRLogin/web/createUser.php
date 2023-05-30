@@ -1,5 +1,5 @@
 <?php
-require_once 'backend/classes/user.php';
+require_once '../backend/classes/user.php';
 
 $user = new User();
 
@@ -12,9 +12,9 @@ if(isset($_POST['back'])){
 }
 ?>
 <head>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
-<img src="image/Technolab Logo.png" alt="logo van technolab" id="logo">
+<img src="../image/Technolab Logo.png" alt="logo van technolab" id="logo">
 <body>
     <main id="mainmain">
         <article id="main">

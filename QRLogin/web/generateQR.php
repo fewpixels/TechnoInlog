@@ -1,10 +1,10 @@
 <head>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <?php
 
-    include('backend/phpqrcode/qrlib.php');
-    $tempDir = 'generated/';
+    include('../backend/phpqrcode/qrlib.php');
+    $tempDir = '../generated/';
     //het pad waarin de qr-code word opgeslagen, opslaan
     $codeContents = $_GET['id'];
     //inhoud van de qr-code
@@ -16,7 +16,7 @@
     // aanmaken!
     QRcode::png($codeContents, $pngAbsoluteFilePath);
 
-    echo '<img src="image/Technolab Logo.png" alt="logo van technolab" id="logo">
+    echo '<img src="../image/Technolab Logo.png" alt="logo van technolab" id="logo">
           <body>
           <main id="mainmain">
           <article id="main">';
@@ -34,7 +34,7 @@
     echo '<a href="index.html"><button type="button">terug naar de scanner pagina</a></button>'; 
 
     echo '</main>
-          <img src="image/Capture.PNG" alt="" id="otherimg">
+          <img src="../image/Capture.PNG" alt="" id="otherimg">
           <div id="tri">
           </div>
           </body>';
