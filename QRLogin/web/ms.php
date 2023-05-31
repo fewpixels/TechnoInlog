@@ -20,22 +20,22 @@ $scanList = $scans->getScans();
   <tr>
     <th>UserID</th>
     <th>Naam</th>
-    <th>InlogTijd</th>
-    <th>UitlogTijd</th>
-	  <th>tijd verschil</th>
-    <th>aantal checkins</th>
-    <th>aantal checkouts</th>
-    <th>checkin indicator</th>
+    <th>Inlog tijd</th>
+    <th>Uitlog tijd</th>
+	  <th>Totaal tijd</th>
+    <th>Opties</th>
   </tr>
   
   <?php
   foreach($scanList as $singleScan){
     echo "<tr>";
     echo "<td>" . $singleScan->userID . "</td>";
-    echo "<td> <a href='msUser.php?user=" . $singleScan->userID . "'>" . $singleScan->naam . "</a> </td>"; 
+    echo "<td> <a id='dashName' href='msUser.php?user=" . $singleScan->userID . "'>" . $singleScan->naam . "</a> </td>"; 
     echo "<td>" . $singleScan->inlogTijd . "</td>"; //en dit ook
     echo "<td>" . $singleScan->uitlogTijd . "</td>";
-    echo "<td>" .$singleScan->totaalTijd . "</td>";  
+    echo "<td>" .$singleScan->totaalTijd . "</td>"; 
+    echo "<td>" . "<a href='editUser.php?user=".$singleScan->userID."'><button type='button'>Bewerken</a></button>";
+    echo "<td>" . "<a href=''><button type='button'>Verwijderen</a></button>"; 
     echo "</tr>";
   }
   ?>

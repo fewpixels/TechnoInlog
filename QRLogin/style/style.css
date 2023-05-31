@@ -173,6 +173,10 @@ tr:nth-child(even) {
   background-color: #94c01f;
 }
 
+#dashName{
+  color:black;
+}
+
 #container {
   display: flex;
   flex-direction: column;
