@@ -32,6 +32,7 @@ body {
   background-color: #94c01f;
   position: relative;
   border-radius: 10px;
+  box-shadow: 2px 4px 16px #000000;
 }
 
 #scanner{
@@ -83,6 +84,7 @@ p{
   position: absolute;
   right: 0;
   bottom: 0;
+  z-index:1;
 }
 
 a{
@@ -157,11 +159,12 @@ table {
   background-color: #eeeeee;
   border-collapse: collapse;
   width: 75%;
+  border-radius: 10px;
+  z-index:2;
+  box-shadow: 2px 4px 16px #000000;
 }
 
 td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
   padding: 8px;
   text-align: center;
 }
