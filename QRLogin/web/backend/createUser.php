@@ -1,5 +1,5 @@
 <?php
-require_once '../backend/classes/user.php';
+require_once '../../backend/classes/user.php';
 
 $user = new User();
 
@@ -8,13 +8,13 @@ if(isset($_POST['register'])){
 }
 
 if(isset($_POST['back'])){
-	header("Location: index.html");
+	header("Location: ../index.html");
 }
 ?>
 <head>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../../style/style.css">
 </head>
-<img src="../image/Technolab Logo.png" alt="logo van technolab" id="logo">
+<img src="../../image/Technolab Logo.png" alt="logo van technolab" id="logo">
 <body>
     <main id="mainmain">
         <article id="main">
@@ -34,7 +34,7 @@ if(isset($_POST['back'])){
                 </form>
             </section>
     </main>
-            <img src="image/Capture.PNG" alt="" id="otherimg">
+            <img src="../image/Capture.PNG" alt="" id="otherimg">
             <div id="tri">
             </div>
 </body>
