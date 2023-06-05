@@ -124,22 +124,14 @@ Class timeStamp extends DBConfig{
         $time2 = new DateTime();
         $time2str = $time2->format('Y-m-d H:i:s');
 
-        $interval = $time1->diff($time2);
-        $hours = $interval->h + ($interval->i / 60) + ($interval->s / 3600);
-        if($hours == 0){
-            $hours = $hours + 1;
-        }
-        // else{
-        //     $hour_diff = $interval->h;
-        // }
-
+        $difference = $time1->diff($time2);
+        $hours = $difference->h + ($difference->i / 60) + ($difference->s / 3600);
 
         $sql = "UPDATE scan SET uitlogTijd = :uitlogTijd, totaalTijd = :totaalTijd WHERE userID = :userID ORDER BY id DESC LIMIT 1";
         $exec = $this->connect()->prepare($sql);
         $exec->bindparam(":uitlogTijd", $time2str);
         $exec->bindparam("totaalTijd",$hours);
         $exec->bindparam(":userID",$userID);
-        $exec->execute();
         if($exec->execute()){       
             return "Tot ziens " .$name . "! ";
             //. "<br>totaal uren gewerkt: " . $hour_diff;

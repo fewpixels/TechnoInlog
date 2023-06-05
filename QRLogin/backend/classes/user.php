@@ -44,7 +44,7 @@ class User extends DBConfig{
                         }else{
                             $name = $data['voornaam'] . " ". $data['tussenvoegsel'] . " " . $data['achternaam'];
                         }
-                        header("Location: generateQR.php?id=$id&name=$name");
+                        header("Location: generateQR.php?id=$id&name=$name&page=create");
                         $exec->close();
                     }
                 }
@@ -74,12 +74,15 @@ class User extends DBConfig{
             if($exec->execute()){
                 if($exec->rowCount() > 0){ //controleren of query een hit heeft
                     return true;
+                    $exec->close(); //verbinding sluiten
                 }else{
                     return false;
+                    $exec->close(); //verbinding sluiten
                 }
             }
         }catch(Exception $e){
             echo $e->getMessage();
+            $exec->close(); //verbinding sluiten
         }
     }
 
@@ -98,9 +101,11 @@ class User extends DBConfig{
 
             if($exec->execute()){
                 header("Location:showUsers.php");
+                $exec->close(); //verbinding sluiten
             }
         }catch(Exception $e){
             echo $e->getMessage();
+            $exec->close(); //verbinding sluiten
         }
     }
 
@@ -109,6 +114,7 @@ class User extends DBConfig{
         $exec = $this->connect()->prepare($sql);
         if($exec->execute()){
             header("Location:showUsers.php");
+            $exec->close(); //verbinding sluiten
         }
     }
 }

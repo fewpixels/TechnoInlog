@@ -22,17 +22,26 @@
           <main id="mainmain">
           <article id="main">';
 
-    echo '<h1> Gebruiker en QR-code aangemaakt! </h1>';
-    echo '<br> <p>'.$_GET['name'].' in de database te vinden onder ID: '.$_GET['id'].'</p>';
-    echo '<br>';
+    if($_GET['page'] == "create"){
+        echo '<h1> Gebruiker en QR-code aangemaakt! </h1>';
+        echo '<br> <p>'.$_GET['name'].' in de database te vinden onder ID: '.$_GET['id'].'</p>';
+        echo '<br>';
+    }else{
+        echo '<h1> QR-code opnieuw aangemaakt! </h1>';
+        echo '<br>';
+    }
     
     echo '<p>bestand te vinden in: '.$showDir.$fileName.'</p>';
     echo '<br>';
     
     // weergeven!
     echo '<img id="qrimage" src="'.$pngAbsoluteFilePath.'" width="128px"/>';
-    echo '<a href="createUser.php"><button type="button">terug naar gebruiker aanmaken</a></button>';
-    echo '<a href="../index.html"><button type="button">terug naar de scanner pagina</a></button>'; 
+    if($_GET['page'] == "create"){
+        echo '<a href="./createUser.php"><button type="button">Nog een gebruiker aanmaken</a></button>';
+        echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</a></button>'; 
+    }else{
+        echo "<a href='./dashUser.php?page=user&user=".$_GET['id']."&name=".$_GET['name']."'><button type='button'>terug naar vorige pagina</a></button>";
+    }
 
     echo '</main>
           <img src="../image/Capture.PNG" alt="" id="otherimg">

@@ -2,9 +2,10 @@
 require_once '../../backend/classes/dashboard.php';
 
 $record = new Dashboard();
+$recordData = $record->getScan();
 
-if(isset($_POST['confirm'])){
-	$record->deleteRecord($_GET['id'], $_GET['page']);
+if(isset($_POST['edit'])){
+	$record->updateRecord($_POST);
 }
 
 if(isset($_POST['dashBack'])){
@@ -22,11 +23,20 @@ if(isset($_POST['userBack'])){
 <body>
     <main id="mainmain">
         <article id="main">
-        <h2>Weet u zeker dat u dit wilt verwijderen? Dit kan niet meer worden hersteld</h2>
             <section class="form">
                 <form method="post" enctype="application/x-www-form-urlencoded"> <!-- deze enctype gebruiken om basis encoding te gebruiken voor formulieren -->
-                    <input type="submit" name="confirm" value="ja, verwijderen!">
+                    <label for="inlogTijd" id="inlogTijd">inlog tijd: </label>
+                    <input type="datetime-local" step="1" name="inlogTijd" value="<?php echo $recordData->inlogTijd ?>">
+                    <br>
+                    <label for="uitlogTijd" id="uitlogTijd">uitlog tijd: </label>
+                    <input type="datetime-local" step="1" name="uitlogTijd" value="<?php echo $recordData->uitlogTijd ?>">
+                    <br><br>
+                    <label> totaal tijd wordt automatisch berekend na het opslaan! </label>
+                    <br>
+                    <label>op dit moment: <?php echo $recordData->totaalTijd ?> uur/uren </label>
 
+                    <br><br>
+                    <input type="submit" name="edit" value="aanpassen">
                     <?php
                     if($_GET['page'] == "dash"){
                     ?>

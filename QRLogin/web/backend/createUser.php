@@ -18,6 +18,7 @@ if(isset($_POST['back'])){
 <body>
     <main id="mainmain">
         <article id="main">
+        <h2>Nieuwe geberuiker aanmaken</h2>
             <section class="form">
                 <form method="post" enctype="application/x-www-form-urlencoded"> <!-- deze enctype gebruiken om basis encoding te gebruiken voor formulieren -->
                     <label for="voornaam" id="voornaam">Voornaam: </label>
@@ -30,7 +31,7 @@ if(isset($_POST['back'])){
                     <input type="text" name="achternaam">
                     <br>
                     <input type="submit" name="register" value="Maak gebruiker aan">
-                    <input type="submit" name="back" value="terug">
+                    <input type="submit" name="back" value="Terug">
                 </form>
             </section>
     </main>
