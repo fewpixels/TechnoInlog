@@ -6,20 +6,28 @@ require_once 'DBConfig.php';
 class User extends DBConfig{
 
     public function getUsers(){ //haal ALLES van ALLE gebruikers op
-        $sql = "SELECT * FROM users";
-        $exec = $this->connect()->prepare($sql);
-        $exec->execute();
-        return $exec->fetchAll(PDO::FETCH_OBJ);
-        $exec->close(); //verbinding sluiten
+        try{
+            $sql = "SELECT id, CONCAT(voornaam,' ',tussenvoegsel,' ',achternaam) AS naam FROM users";
+            $exec = $this->connect()->prepare($sql);
+            $exec->execute();
+            return $exec->fetchAll(PDO::FETCH_OBJ);
+            $exec->close(); //verbinding sluiten
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }
     }
 
     public function getUserData($data){
-        $id = $data['userID'];
-        $sql = "SELECT * FROM users WHERE id = $id";
-        $exec = $this->connect()->prepare($sql);
-        $exec->execute();
-        return $exec->fetchAll(PDO::FETCH_OBJ);
-        $exec->close(); //verbinding sluiten
+        try{
+            $id = $data['userID'];
+            $sql = "SELECT * FROM users WHERE id = $id";
+            $exec = $this->connect()->prepare($sql);
+            $exec->execute();
+            return $exec->fetchAll(PDO::FETCH_OBJ);
+            $exec->close(); //verbinding sluiten
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }
     }
 
     public function createUser($data){

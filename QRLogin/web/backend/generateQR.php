@@ -37,10 +37,16 @@
     // weergeven!
     echo '<img id="qrimage" src="'.$pngAbsoluteFilePath.'" width="128px"/>';
     if($_GET['page'] == "create"){
-        echo '<a href="./createUser.php"><button type="button">Nog een gebruiker aanmaken</a></button>';
-        echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</a></button>'; 
+        echo '<a href="./createUser.php"><button type="button">Nog een gebruiker aanmaken</button></a>';
+        echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</button></a>'; 
     }else{
-        echo "<a href='./dashUser.php?page=user&user=".$_GET['id']."&name=".$_GET['name']."'><button type='button'>terug naar vorige pagina</a></button>";
+        if(isset($_GET['prev'])){
+            echo "<a href='./dashUser.php?page=user&user=".$_GET['id']."&name=".$_GET['name']."&pageno=".$_GET['prev']."'><button type='button'>terug naar vorige pagina</button></a>";
+            echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</button></a>'; 
+        }else{
+            echo "<a href='./dashUser.php?page=user&user=".$_GET['id']."&name=".$_GET['name']."&pageno=0'><button type='button'>terug naar vorige pagina</button></a>";
+            echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</button></a>'; 
+        }
     }
 
     echo '</main>

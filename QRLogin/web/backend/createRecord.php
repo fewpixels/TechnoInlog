@@ -14,11 +14,15 @@ if(isset($_POST['create'])){
 }
 
 if(isset($_POST['dashBack'])){
-	header("Location: dash.php");
+    if(isset($_GET['prev'])){
+        header("Location: dash.php?pageno=".$_GET['prev']);
+    }else{
+	    header("Location: dash.php?pageno=0");
+    }
 }
 
 if(isset($_POST['userBack'])){
-	header("Location: dashUser.php?user=".$_GET['user']."&name=".$_GET['name']);
+	header("Location: dashUser.php?user=".$_GET['user']."&name=".$_GET['name']."&pageno=0");
 }
 ?>
 <head>
@@ -49,12 +53,7 @@ if(isset($_POST['userBack'])){
                         <select id="userID" name="userID">
                             <?php
                                 foreach($usersData as $user){
-                                    if($user->tussenvoegsel != "" || $user->tussenvoegsel != null ){
-                                        echo "<option value ='".$user->id."'>".$user->id." - ".$user->voornaam." ".$user->tussenvoegsel." ".$user->achternaam."</option>";
-
-                                    }else{
-                                        echo "<option value ='".$user->id."'>".$user->id." - ".$user->voornaam." ".$user->achternaam."</option>";
-                                    }
+                                echo "<option value ='".$user->id."'>".$user->id." - ".$user->naam."</option>";
                                 }
                                 echo "</select>"
                             ?>

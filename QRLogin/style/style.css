@@ -99,6 +99,7 @@ button{
   padding-top:1%;
   border-radius: 5px;
   margin:3px;
+  color: white;
 }
 button:hover{
   background-color: #94c01f;

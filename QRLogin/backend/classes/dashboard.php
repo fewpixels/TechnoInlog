@@ -36,7 +36,8 @@ class Dashboard extends DBConfig{
                     CONCAT(users.voornaam,' ',users.tussenvoegsel,' ',users.achternaam) AS naam -- naamdelen samenvoegen
                     FROM users
                     INNER JOIN scan ON users.id = scan.userID
-                    WHERE users.Id = :id";
+                    WHERE users.Id = :id
+                    ORDER BY scan.uitlogTijd DESC";
             $exec = $this->connect()->prepare($sql);
             $exec->bindParam(":id", $id);
             $exec->execute();
@@ -85,10 +86,10 @@ class Dashboard extends DBConfig{
             $exec->bindParam(":uitlogTijd", $newTimeFormat2);
             $exec->bindParam(":totaalTijd", $hours);
             if($exec->execute() && $_GET['page'] == 'dash'){
-                header("Location:dash.php");
+                header("Location:dash.php?pageno=0");
                 $exec->close();
             }else{
-                header("Location: dashUser.php?user=".$_GET['user']."&name=".$_GET['name']);
+                header("Location: dashUser.php?pageno=0&user=".$_GET['user']."&name=".$_GET['name']);
                 $exec->close(); //verbinding sluiten
             }
         }catch(Exception $e){
@@ -126,10 +127,10 @@ class Dashboard extends DBConfig{
             $exec->bindParam(":uitlogTijd", $newTimeFormat2);
             $exec->bindParam(":totaalTijd", $hours);
             if($exec->execute() && $_GET['page'] == 'dash'){
-                header("Location:dash.php");
+                header("Location:dash.php?pageno=0");
                 $exec->close();
             }else{
-                header("Location: dashUser.php?user=".$_GET['user']."&name=".$_GET['name']);
+                header("Location: dashUser.php?pageno=0&user=".$_GET['user']."&name=".$_GET['name']);
                 $exec->close(); //verbinding sluiten
             }
         }catch(Exception $e){
@@ -147,7 +148,7 @@ class Dashboard extends DBConfig{
                 header("Location:dash.php");
                 $exec->close();
             }else{
-                header("Location: dashUser.php?user=".$_GET['user']."&name=".$_GET['name']);
+                header("Location: dashUser.php?pageno=0&user=".$_GET['user']."&name=".$_GET['name']);
                 $exec->close(); //verbinding sluiten
             }
         }catch(Exception $e){

@@ -9,11 +9,11 @@ if(isset($_POST['edit'])){
 }
 
 if(isset($_POST['dashBack'])){
-	header("Location: dash.php");
+	header("Location: dash.php?pageno=".$_GET['prev']);
 }
 
 if(isset($_POST['userBack'])){
-	header("Location: dashUser.php?user=".$_GET['user']."&name=".$_GET['name']);
+	header("Location: dashUser.php?pageno=".$_GET['prev']."&user=".$_GET['user']."&name=".$_GET['name']);
 }
 ?>
 <head>
