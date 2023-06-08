@@ -41,6 +41,8 @@ if($_GET['pageno'] > 0){
       echo "<td> <a id='dashName' href='dashUser.php?user=" . $user->id . "&name=". $user->naam . "&prev=".$_GET['pageno']."&page=userManage&pageno=0'>" . $user->naam . "</a> </td>";  
       echo "<td>" . "<a href='editRecord.php?record=".$user->id."&page=userManage'><button type='button'>Bewerken</button></a>";
       echo "<a href='confirmRecordDelete.php?id=".$user->id."&page=userManage'><button type='button'>Verwijderen</button></a>"; 
+      echo "<a href='./generateQR.php?page=userManage&id=".$user->id."&name=".$user->naam."&prev=".$_GET['pageno']."'><button type='button'>QR code opnieuw genereren</button></a>";
+      echo "</td>";
       echo "</tr>";
     }
     ?>

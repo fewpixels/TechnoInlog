@@ -12,7 +12,6 @@
 
     $fileName = $_GET['name'].$_GET['id'].'.png'; //naam van het bestand
     $pngAbsoluteFilePath = $tempDir.$fileName;
-    //$urlRelativeFilePath = EXAMPLE_TMP_URLRELPATH.$fileName;
 
     // aanmaken!
     QRcode::png($codeContents, $pngAbsoluteFilePath);
@@ -40,12 +39,14 @@
         echo '<a href="./createUser.php"><button type="button">Nog een gebruiker aanmaken</button></a>';
         echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</button></a>'; 
     }else{
-        if(isset($_GET['prev'])){
+        if(isset($_GET['prev']) && $_GET['page'] == "user"){
             echo "<a href='./dashUser.php?page=user&user=".$_GET['id']."&name=".$_GET['name']."&pageno=".$_GET['prev']."'><button type='button'>terug naar vorige pagina</button></a>";
             echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</button></a>'; 
-        }else{
+        }if(!isset($_GET['prev']) && $_GET['page'] == "user"){
             echo "<a href='./dashUser.php?page=user&user=".$_GET['id']."&name=".$_GET['name']."&pageno=0'><button type='button'>terug naar vorige pagina</button></a>";
             echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</button></a>'; 
+        }if(isset($_GET['prev']) && $_GET['page'] == "userManage"){
+            
         }
     }
 
