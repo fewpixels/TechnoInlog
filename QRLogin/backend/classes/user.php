@@ -117,14 +117,35 @@ class User extends DBConfig{
         }
     }
 
-    public function deleteUser($id){
-        $sql = "DELETE FROM users WHERE id = $id";
+    public function countUserRecords($id){
+        $sql = "SELECT COUNT(uitlogTijd) as total FROM scan WHERE userID = $id";
         $exec = $this->connect()->prepare($sql);
         if($exec->execute()){
-            header("Location:showUsers.php");
+            return $exec->fetch(PDO::FETCH_OBJ);
+            $exec->close(); //verbinding sluiten
+        }
+    }
+
+    public function deleteUser($id){
+        try{
+            $sql = "DELETE FROM scan WHERE userID = :id";
+            $exec = $this->connect()->prepare($sql);
+            $exec->bindParam(":id", $id);
+            if($exec->execute()){
+                $sql = "DELETE FROM users WHERE id = :id";
+                $exec = $this->connect()->prepare($sql);
+                $exec->bindParam(":id", $id);
+                if($exec->execute()){
+                    header("Location: userPanel.php?pageno=0");
+                    exit(); // Script afsluiten
+                }
+            }
+        }catch(Exception $e){
+            echo $e->getMessage();
             $exec->close(); //verbinding sluiten
         }
     }
 }
+    
 
 ?>

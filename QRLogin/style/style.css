@@ -34,6 +34,19 @@ body {
   border-radius: 10px;
   box-shadow: 2px 4px 16px #000000;
 }
+#dangerMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #c01f1f;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 2px 4px 16px #000000;
+}
+
+#dangerMain h2{
+  color:white;
+}
 
 #scanner{
   border-radius: 10px;
