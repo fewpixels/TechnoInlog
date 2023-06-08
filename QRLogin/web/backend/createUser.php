@@ -3,12 +3,20 @@ require_once '../../backend/classes/user.php';
 
 $user = new User();
 
-if(isset($_POST['register'])){
-	$user->createUser($_POST);
+if($_GET['page'] == "scan" && isset($_POST['register'])){
+	$user->createUser($_POST, $_GET['page']);
 }
 
-if(isset($_POST['back'])){
+if($_GET['page'] == "userManage" && isset($_POST['register'])){
+	$user->createUser($_POST, $_GET['page']);
+}
+
+if(isset($_POST['scanBack'])){
 	header("Location: ../index.html");
+}
+
+if(isset($_POST['panelBack'])){
+	header("Location: ./userPanel.php?pageno=0");
 }
 ?>
 <head>
@@ -31,7 +39,17 @@ if(isset($_POST['back'])){
                     <input type="text" name="achternaam">
                     <br>
                     <input type="submit" name="register" value="Maak gebruiker aan">
-                    <input type="submit" name="back" value="Terug">
+                    <?php
+                    if($_GET['page'] == "userManage"){
+                    ?>
+                        <input type="submit" name="panelBack" value="Terug">
+                    <?php
+                    }else{
+                    ?>
+                        <input type="submit" name="scanBack" value="Terug">
+                    <?php
+                    }
+                    ?>
                 </form>
             </section>
     </main>

@@ -17,20 +17,20 @@ class User extends DBConfig{
         }
     }
 
-    public function getUserData($data){
+    public function getUserData(){
         try{
-            $id = $data['userID'];
+            $id = $_GET['id'];
             $sql = "SELECT * FROM users WHERE id = $id";
             $exec = $this->connect()->prepare($sql);
             $exec->execute();
-            return $exec->fetchAll(PDO::FETCH_OBJ);
+            return $exec->fetch(PDO::FETCH_OBJ);
             $exec->close(); //verbinding sluiten
         }catch(Exception $e){
             echo $e->getMessage();
         }
     }
 
-    public function createUser($data){
+    public function createUser($data, $page){
         try{
             if($this->checkIfUserExists($data)){
                 throw new Exception("Gebruiker bestaat al!");
@@ -52,8 +52,11 @@ class User extends DBConfig{
                         }else{
                             $name = $data['voornaam'] . " ". $data['tussenvoegsel'] . " " . $data['achternaam'];
                         }
-                        header("Location: generateQR.php?id=$id&name=$name&page=create");
-                        $exec->close();
+                        if($page == "scan"){
+                            header("Location: generateQR.php?id=$id&name=$name&page=scan");
+                        }if($page == "userManage"){
+                            header("Location: generateQR.php?id=$id&name=$name&page=userManage");
+                        }
                     }
                 }
             }
@@ -94,26 +97,23 @@ class User extends DBConfig{
         }
     }
 
-    public function updateUser($data){ //alles bijwerken
-        $userid = $_GET['userID'];
+    public function updateUser($data, $page, $id){ //gebruiker bijwerken
         try{
             $sql = "UPDATE users SET 
                     voornaam = :voornaam, 
                     tussenvoegsel = :tussenvoegsel, 
-                    achternaam = :achternaam, 
-                    WHERE id = $userid";
+                    achternaam = :achternaam
+                    WHERE id = :id";
             $exec = $this->connect()->prepare($sql);
             $exec->bindParam(":voornaam", $data['voornaam']);
             $exec->bindParam(":tussenvoegsel", $data['tussenvoegsel']);
             $exec->bindParam(":achternaam", $data['achternaam']);
-
+            $exec->bindParam(":id", $id, PDO::PARAM_INT);
             if($exec->execute()){
-                header("Location:showUsers.php");
-                $exec->close(); //verbinding sluiten
+                header("Location:userPanel.php?pageno=".$page);
             }
         }catch(Exception $e){
             echo $e->getMessage();
-            $exec->close(); //verbinding sluiten
         }
     }
 

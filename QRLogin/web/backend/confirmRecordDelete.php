@@ -59,11 +59,11 @@ if($_GET['page'] == "userManage"){
                     <?php
                     if($_GET['page'] == "dash"){
                     ?>
-                        <input type="submit" name="dashBack" value="terug">
+                        <input type="submit" name="dashBack" value="Terug">
                     <?php
                     }else{
                     ?>
-                        <input type="submit" name="userBack" value="terug">
+                        <input type="submit" name="userBack" value="Terug">
                     <?php
                     }
                     ?>
