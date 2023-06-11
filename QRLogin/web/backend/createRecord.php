@@ -1,6 +1,6 @@
 <?php
 require_once '../../backend/classes/dashboard.php';
-
+require './sessionCheck.php';
 if($_GET['page'] == "dash"){ //optimalisatie, alleen inladen als je vanuit een gebruikers pagina komt
     require_once '../../backend/classes/user.php';
     $users = new User();

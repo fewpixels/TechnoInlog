@@ -1,6 +1,6 @@
 <?php
 require_once '../../backend/classes/user.php';
-
+require './sessionCheck.php';
 $users = new User();
 
 $usersData = $users->getUsers();

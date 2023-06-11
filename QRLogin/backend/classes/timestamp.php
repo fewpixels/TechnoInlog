@@ -1,5 +1,5 @@
 <?php
-require_once 'backend/classes/DBConfig.php';
+require_once 'DBConfig.php';
 Class timeStamp extends DBConfig{
 
     public function checkIn($userId){

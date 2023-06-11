@@ -1,6 +1,6 @@
 <?php
 require_once '../../backend/classes/dashboard.php';
-
+require './sessionCheck.php';
 $scans = new Dashboard();
 
 $scanList = $scans->getScansById($_GET['user']);
@@ -19,7 +19,7 @@ if($_GET['pageno'] > 0){
 <img src="../../image/Technolab Logo.png" alt="logo van technolab" id="logo">
 <body>    
   <article id='container'>
-    <h1>Scanlijst van <?php echo $_GET['name'] ?> </h1>
+    <h1>Scanlijst van <?php echo $_GET['name'] ?>  </h1>
     <table>
       <tr>
         <td>

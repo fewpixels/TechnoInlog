@@ -1,6 +1,5 @@
 <?php
 require_once '../../backend/classes/user.php';
-
 $user = new User();
 
 if($_GET['page'] == "scan" && isset($_POST['register'])){
@@ -12,7 +11,7 @@ if($_GET['page'] == "userManage" && isset($_POST['register'])){
 }
 
 if(isset($_POST['scanBack'])){
-	header("Location: ../index.html");
+	header("Location: ../index.php");
 }
 
 if(isset($_POST['panelBack'])){

@@ -1,4 +1,5 @@
 <?php
+require './sessionCheck.php';
 if($_GET['page'] == "dash" || $_GET['page'] == "user"){
     require_once '../../backend/classes/dashboard.php';
     $record = new Dashboard();

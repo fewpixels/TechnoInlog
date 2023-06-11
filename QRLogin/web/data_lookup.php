@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-<img src="image/Technolab Logo.png" alt="logo van technolab" id='logo'>
+<img src="../image/Technolab Logo.png" alt="logo van technolab" id='logo'>
 <article id='mainmain'>
     <article id='main'>
         <section id='text'>
@@ -11,7 +11,7 @@
             $timeClass = new timeStamp();
             if(isset($_GET['data'])) {
                 echo "<h1 id='output'> " . $timeClass->checkIn($_GET['data']) . " </h1>";
-                header( "refresh:3.5; url=index.html" ); 
+                header( "refresh:3.5; url=index.php" ); 
             }
         ?>
         </section>

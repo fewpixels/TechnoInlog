@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <?php
-
+    //hier moet ik een controle doen, ik weet niet hoe
     include('../../backend/phpqrcode/qrlib.php');
     $tempDir = '../../generated/';
     $showDir = 'generated/';
@@ -59,7 +59,7 @@
     }
 
     echo '</main>
-          <img src="../image/Capture.PNG" alt="" id="otherimg">
+          <img src="../../image/Capture.PNG" alt="" id="otherimg">
           <div id="tri">
           </div>
           </body>';

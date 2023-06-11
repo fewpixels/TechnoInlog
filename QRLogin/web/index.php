@@ -1,3 +1,8 @@
+<?php
+    if(session_status() == 2){
+        session_destroy();
+    }  
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +20,7 @@
                     <h1 id="qrText">Scan uw pas om in te loggen</h1>
                     <section id="item">
                     <a href="backend/createUser.php?page=scan"><button type="button">Gebruiker toevoegen</button></a>
-                    <a href="backend/dash.php?pageno=0"><button type="button">Scans bekijken</button></a>
+                    <a href="backend/verify.php"><button type="button">Scans bekijken</button></a>
                     </section>
                 </article>
             
