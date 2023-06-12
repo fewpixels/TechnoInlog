@@ -2,12 +2,17 @@
 require_once '../../backend/classes/user.php';
 $user = new User();
 
-if($_GET['page'] == "scan" && isset($_POST['register'])){
-	$user->createUser($_POST, $_GET['page']);
+if($_GET['page'] == "scan"){
+    if(isset($_POST['register'])){
+	    $user->createUser($_POST, $_GET['page']);
+    }
 }
 
-if($_GET['page'] == "userManage" && isset($_POST['register'])){
-	$user->createUser($_POST, $_GET['page']);
+if($_GET['page'] == "userManage" ){
+    session_start();
+    if(isset($_POST['register'])){
+	    $user->createUser($_POST, $_GET['page']);
+    }
 }
 
 if(isset($_POST['scanBack'])){
@@ -37,6 +42,24 @@ if(isset($_POST['panelBack'])){
                     <label for="achternaam" id="achternaam">Achternaam: </label>
                     <input type="text" name="achternaam">
                     <br>
+                    <?php if($_GET['page'] == "userManage"){
+                            if($_SESSION['admin'] == 1){                  
+                    ?>
+                            <label for="isAdmin" id="isAdmin" title="mag scans en gebruikers beheren">Admin rechten (?)</label>
+                            <input type="checkbox" name="isAdmin" value=1>    
+                            <br>
+                    <?php 
+                            }
+                            if($_SESSION['superAdmin'] == 1){
+                    ?>
+                            <label for="isSuperAdmin" id="isSuperAdmin" title="mag scans, gebruikers beheren en heeft toegang tot phpMyAdmin">Super admin rechten (?)</label>
+                            <input type="checkbox" name="isSuperAdmin" value=1> 
+                            <br>
+                    <?php
+                            }
+                        }
+                    ?>
+
                     <input type="submit" name="register" value="Maak gebruiker aan">
                     <?php
                     if($_GET['page'] == "userManage"){

@@ -40,21 +40,21 @@
     // weergeven!
     echo '<img id="qrimage" src="'.$pngAbsoluteFilePath.'" width="128px"/>';
     if($_GET['page'] == "scan"){
-        echo '<a href="./createUser.php"><button type="button">Nog een gebruiker aanmaken</button></a>';
-        echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</button></a>'; 
+        echo '<a href="./createUser.php?page=scan"><button type="button">Nog een gebruiker aanmaken</button></a>';
+        echo '<a href="../index.php"><button type="button">Terug naar de scanner pagina</button></a>'; 
     }else{
         if(isset($_GET['prev']) && $_GET['page'] == "user"){
             echo "<a href='./dashUser.php?page=user&user=".$_GET['id']."&name=".$_GET['name']."&pageno=".$_GET['prev']."'><button type='button'>terug naar vorige pagina</button></a>";
-            echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</button></a>'; 
+            echo '<a href="./logout.php"><button type="button">Terug naar de scanner pagina</button></a>'; 
         }if(!isset($_GET['prev']) && $_GET['page'] == "user"){
             echo "<a href='./dashUser.php?page=user&user=".$_GET['id']."&name=".$_GET['name']."&pageno=0'><button type='button'>terug naar vorige pagina</button></a>";
-            echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</button></a>'; 
+            echo '<a href="./logout.php"><button type="button">Terug naar de scanner pagina</button></a>'; 
         }if(isset($_GET['prev']) && $_GET['page'] == "userManageBtn"){
             echo "<a href='./userPanel.php?pageno=".$_GET['prev']."'><button type='button'>Terug naar de vorige pagina</button></a>";
-            echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</button></a>'; 
+            echo '<a href="./logout.php"><button type="button">Terug naar de scanner pagina</button></a>'; 
         }if(!isset($_GET['prev']) && $_GET['page'] == "userManage"){
             echo "<a href='./userPanel.php?pageno=0'><button type='button'>Terug naar gebruikersbeheer</button></a>";
-            echo '<a href="../index.html"><button type="button">Terug naar de scanner pagina</button></a>'; 
+            echo '<a href="./logout.php"><button type="button">Terug naar de scanner pagina</button></a>'; 
         }
     }
 

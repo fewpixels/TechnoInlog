@@ -36,25 +36,45 @@ class User extends DBConfig{
                 throw new Exception("Gebruiker bestaat al!");
             }
             else{
-                $sql = "INSERT INTO users (voornaam, tussenvoegsel, achternaam) VALUES (:voornaam, :tussenvoegsel, :achternaam)";
-                $exec = $this->connect()->prepare($sql);
-                $exec->bindParam(":voornaam", $data['voornaam']);
-                $exec->bindParam(":tussenvoegsel", $data['tussenvoegsel']);
-                $exec->bindParam(":achternaam", $data['achternaam']);
-                if($exec->execute()){
-                    sleep(0.5);
-                    $sql = "SELECT id FROM users ORDER BY id DESC LIMIT 1";
+                if($page == "scan"){
+                    $sql = "INSERT INTO users (voornaam, tussenvoegsel, achternaam) VALUES (:voornaam, :tussenvoegsel, :achternaam)";
                     $exec = $this->connect()->prepare($sql);
+                    $exec->bindParam(":voornaam", $data['voornaam']);
+                    $exec->bindParam(":tussenvoegsel", $data['tussenvoegsel']);
+                    $exec->bindParam(":achternaam", $data['achternaam']);
                     if($exec->execute()){
-                        $id = $exec->fetchColumn();
-                        if($data['tussenvoegsel'] == null || $data['tussenvoegsel'] == ""){
-                            $name = $data['voornaam'] . " " . $data['achternaam'];
-                        }else{
-                            $name = $data['voornaam'] . " ". $data['tussenvoegsel'] . " " . $data['achternaam'];
-                        }
-                        if($page == "scan"){
+                        sleep(0.5);
+                        $sql = "SELECT id FROM users ORDER BY id DESC LIMIT 1";
+                        $exec = $this->connect()->prepare($sql);
+                        if($exec->execute()){
+                            $id = $exec->fetchColumn();
+                            if($data['tussenvoegsel'] == null || $data['tussenvoegsel'] == ""){
+                                $name = $data['voornaam'] . " " . $data['achternaam'];
+                            }else{
+                                $name = $data['voornaam'] . " ". $data['tussenvoegsel'] . " " . $data['achternaam'];
+                            }
                             header("Location: generateQR.php?id=$id&name=$name&page=scan");
-                        }if($page == "userManage"){
+                        }
+                    }
+                }if($page == "userManage"){
+                    $sql = "INSERT INTO users (voornaam, tussenvoegsel, achternaam, isAdmin, isSuperAdmin) VALUES (:voornaam, :tussenvoegsel, :achternaam, :isAdmin, :isSuperAdmin)";
+                    $exec = $this->connect()->prepare($sql);
+                    $exec->bindParam(":voornaam", $data['voornaam']);
+                    $exec->bindParam(":tussenvoegsel", $data['tussenvoegsel']);
+                    $exec->bindParam(":achternaam", $data['achternaam']);
+                    $exec->bindParam(":isAdmin", $data['isAdmin']);
+                    $exec->bindParam(":isSuperAdmin", $data['isSuperAdmin']);
+                    if($exec->execute()){
+                        sleep(0.5);
+                        $sql = "SELECT id FROM users ORDER BY id DESC LIMIT 1";
+                        $exec = $this->connect()->prepare($sql);
+                        if($exec->execute()){
+                            $id = $exec->fetchColumn();
+                            if($data['tussenvoegsel'] == null || $data['tussenvoegsel'] == ""){
+                                $name = $data['voornaam'] . " " . $data['achternaam'];
+                            }else{
+                                $name = $data['voornaam'] . " ". $data['tussenvoegsel'] . " " . $data['achternaam'];
+                            }
                             header("Location: generateQR.php?id=$id&name=$name&page=userManage");
                         }
                     }
@@ -99,18 +119,40 @@ class User extends DBConfig{
 
     public function updateUser($data, $page, $id){ //gebruiker bijwerken
         try{
-            $sql = "UPDATE users SET 
-                    voornaam = :voornaam, 
-                    tussenvoegsel = :tussenvoegsel, 
-                    achternaam = :achternaam
-                    WHERE id = :id";
-            $exec = $this->connect()->prepare($sql);
-            $exec->bindParam(":voornaam", $data['voornaam']);
-            $exec->bindParam(":tussenvoegsel", $data['tussenvoegsel']);
-            $exec->bindParam(":achternaam", $data['achternaam']);
-            $exec->bindParam(":id", $id, PDO::PARAM_INT);
-            if($exec->execute()){
-                header("Location:userPanel.php?pageno=".$page);
+            if($_SESSION['superAdmin'] == 1){
+                $sql = "UPDATE users SET 
+                        voornaam = :voornaam, 
+                        tussenvoegsel = :tussenvoegsel, 
+                        achternaam = :achternaam,
+                        isAdmin = :isAdmin,
+                        isSuperAdmin = :isSuperAdmin
+                        WHERE id = :id";
+                $exec = $this->connect()->prepare($sql);
+                $exec->bindParam(":voornaam", $data['voornaam']);
+                $exec->bindParam(":tussenvoegsel", $data['tussenvoegsel']);
+                $exec->bindParam(":achternaam", $data['achternaam']);
+                $exec->bindParam(":isAdmin", $data['isAdmin']);
+                $exec->bindParam(":isSuperAdmin", $data['isSuperAdmin']);
+                $exec->bindParam(":id", $id, PDO::PARAM_INT);
+                if($exec->execute()){
+                    header("Location:userPanel.php?pageno=".$page);
+                }
+            }else{
+                $sql = "UPDATE users SET 
+                        voornaam = :voornaam, 
+                        tussenvoegsel = :tussenvoegsel, 
+                        achternaam = :achternaam,
+                        isAdmin = :isAdmin
+                        WHERE id = :id";
+                $exec = $this->connect()->prepare($sql);
+                $exec->bindParam(":voornaam", $data['voornaam']);
+                $exec->bindParam(":tussenvoegsel", $data['tussenvoegsel']);
+                $exec->bindParam(":achternaam", $data['achternaam']);
+                $exec->bindParam(":isAdmin", $data['isAdmin']);
+                $exec->bindParam(":id", $id, PDO::PARAM_INT);
+                if($exec->execute()){
+                    header("Location:userPanel.php?pageno=".$page);
+                }
             }
         }catch(Exception $e){
             echo $e->getMessage();

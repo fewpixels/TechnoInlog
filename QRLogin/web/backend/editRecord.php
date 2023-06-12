@@ -81,6 +81,24 @@ if($_GET['page'] == "userManage"){
                     <label for="achternaam" id="achternaam">Achternaam: </label>
                     <input type="text" name="achternaam" value="<?php echo $userData->achternaam ?>">
                     <br>
+                    <?php if($_GET['page'] == "userManage"){
+                            if($_SESSION['admin'] == 1){                  
+                        ?>
+                            <label for="isAdmin" id="isAdmin" title="mag scans en gebruikers beheren">Admin rechten (?)</label>
+                            <input type="checkbox" name="isAdmin" value=1 <?php if($userData->isAdmin == true ){echo "checked";} ?>>    
+                            <br>
+                        <?php 
+                            
+                            if($_SESSION['superAdmin'] == 1){
+                        ?>
+                            <label for="isSuperAdmin" id="isSuperAdmin" title="mag scans, gebruikers beheren en heeft toegang tot phpMyAdmin">Super admin rechten (?)</label>
+                            <input type="checkbox" name="isSuperAdmin" value=1 <?php if($userData->isSuperAdmin == true){echo "checked";} ?>> 
+                            <br>
+                        <?php
+                            }
+                            }
+                        }
+                        ?>
                     <input type="submit" name="edit" value="Aanpassen">
                     <input type="submit" name="panelBack" value="Terug">
                 </form>

@@ -23,7 +23,7 @@ if($_GET['pageno'] > 0){
   <h1>Scanlijst</h1>
   <table>
     <tr>
-      <td><a href="../index.php"><button type="button">Terug</button></a>
+      <td><a href="./logout.php"><button type="button">Terug</button></a>
       <a href="./createRecord.php?page=dash&prev=<?php echo $_GET['pageno']; ?>"><button type="button">Scan aanmaken</button></a>
       <a href="./userPanel.php?pageno=0"><button type="button">Gebruikers beheren</button></a>
       </td>
