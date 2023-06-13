@@ -20,19 +20,26 @@ class DBConfig{
                     session_start();
                 }
                 $result = $exec->fetch(PDO::FETCH_OBJ);
-                if($result->isAdmin == 1){
+                if($result->isAdmin == 1 || $result->isSuperAdmin == 1){
                     if($result->isSuperAdmin == 1){
                         $_SESSION['superAdmin'] = true;
                         $_SESSION['admin'] = true;
-                        header('Location: ./dash.php?pageno=0&status=true');
-                        exit();
+                        if(!isset($_GET['page'])){
+                            header('Location: ./dash.php?pageno=0&status=true');
+                            exit();
+                        }else{
+                            if($_GET['page'] == "superCheck"){
+                                header('Location: https://localhost/phpmyadmin/index.php?page=super');
+                            }
+                        }
                     }
                     $_SESSION['admin'] = true;
                     $_SESSION['superAdmin'] = false;
                     header('Location: ./dash.php?pageno=0&status=true');
                     exit();
                 }else{
-                    header( "Location: ./verify.php?status=denied" ); 
+                    header( "Location: ./verify.php?status=denied" );
+                    exit(); 
                 }
             }
         } catch(Exception $e){

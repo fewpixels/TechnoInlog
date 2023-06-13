@@ -145,7 +145,7 @@ class Dashboard extends DBConfig{
             $sql = "DELETE FROM scan WHERE id = $id";
             $exec = $this->connect()->prepare($sql);
             if($exec->execute() && $page == 'dash'){
-                header("Location:dash.php");
+                header("Location:dash.php?pageno=0");
                 $exec->close();
             }else{
                 header("Location: dashUser.php?pageno=0&user=".$_GET['user']."&name=".$_GET['name']);

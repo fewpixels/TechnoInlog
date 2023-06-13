@@ -19,7 +19,7 @@ if($_GET['pageno'] > 0){
 </head>
 <img src="../../image/Technolab Logo.png" alt="logo van technolab" id="logo">
 <body>  
-<article id='container'>
+<article id='container'>  
   <h1>Scanlijst</h1>
   <table>
     <tr>
@@ -27,7 +27,7 @@ if($_GET['pageno'] > 0){
       <a href="./createRecord.php?page=dash&prev=<?php echo $_GET['pageno']; ?>"><button type="button">Scan aanmaken</button></a>
       <a href="./userPanel.php?pageno=0"><button type="button">Gebruikers beheren</button></a>
       <?php if($_SESSION['superAdmin'] == 1){ ?>
-      <a href="https://localhost/phpmyadmin/"><button type="button">phpMyAdmin</button></a>
+      <a href="https://localhost/phpmyadmin/index.php?page=super"><button type="button">phpMyAdmin</button></a>
       <?php } ?>
       </td>
     </tr>

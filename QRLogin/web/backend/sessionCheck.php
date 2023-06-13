@@ -6,8 +6,14 @@
         header('Location: ../index.php');
     }
     if(isset($_SESSION['admin']) || isset($_SESSION['superAdmin'])){
-        if($_SESSION['admin'] == false){
-            header('Location: ./verify.php?status=denied');
-        }
+        if(isset($_SESSION['superAdmin'])){
+            if($_SESSION['superAdmin'] == false){
+                if($_SESSION['admin'] == false){
+                    header('Location: ./verify.php?status=denied');
+                }
+            }
+        }elseif($_SESSION['admin'] == false){
+                header('Location: ./verify.php?status=denied');
+            }
     }
 ?>
