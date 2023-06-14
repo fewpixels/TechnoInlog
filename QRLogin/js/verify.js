@@ -16,7 +16,7 @@ function webScan(){
     
     scanner.addListener('scan', function (content) {
       $(document).ready(function(){
-        window.location = './data_lookup.php?data='+content;
+        window.location = './verify.php?data='+content;
       });
     });
     
