@@ -27,7 +27,7 @@ if($_GET['pageno'] > 0){
       <a href="./createRecord.php?page=dash&prev=<?php echo $_GET['pageno']; ?>"><button type="button">Scan aanmaken</button></a>
       <a href="./userPanel.php?pageno=0"><button type="button">Gebruikers beheren</button></a>
       <?php if($_SESSION['superAdmin'] == 1){ ?>
-      <a href="https://localhost/phpmyadmin/index.php?page=super"><button type="button">phpMyAdmin</button></a>
+      <a href="http://localhost/phpmyadmin/index.php?page=super"><button type="button">phpMyAdmin</button></a>
       <?php } ?>
       </td>
     </tr>

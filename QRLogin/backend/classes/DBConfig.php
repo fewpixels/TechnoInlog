@@ -29,7 +29,7 @@ class DBConfig{
                             exit();
                         }else{
                             if($_GET['page'] == "superCheck"){
-                                header('Location: https://localhost/phpmyadmin/index.php?page=super');
+                                header('Location: http://localhost/phpmyadmin/index.php?page=super');
                             }
                         }
                     }
